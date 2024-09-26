@@ -1,0 +1,71 @@
+.header {
+    padding-left: 64px;
+    padding-top: 28px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 1440px;
+    height: 72px;
+    gap: 450px;
+    border-bottom: 1px solid #F2F4F7;
+    position: sticky;
+}
+
+.travelTrucks {
+    cursor: pointer;
+}
+
+.travel {
+    color: #101828;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.trucks {
+    color: #475467;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.home {
+    color: #101828;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.home:hover {
+    color: #D84343;
+    cursor: pointer;
+}
+
+.home:focus {
+    color: #D84343;
+    cursor: pointer;
+}
+
+.catalog {
+color: #101828;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.catalog:hover {
+    color: #D84343;
+    cursor: pointer;
+}
+
+.catalog:focus {
+    color: #D84343;
+    cursor: pointer;
+}
