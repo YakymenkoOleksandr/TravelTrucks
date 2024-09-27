@@ -1,13 +1,16 @@
 import css from "./Card.module.css";
 import PropTypes from "prop-types";
-import { BsMap } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import NameOfVan from "../Card/componentsOfCard/NameOfVan/NameOfVan.jsx";
+import PriceBlock from "./componentsOfCard/PriceBlock/PriceBlock.jsx";
+import BlockReitingRevieusLocation from "./componentsOfCard/BlockReitingRevieusLocation/BlockReitingRevieusLocation.jsx";
+import ComplectationBlock from "./componentsOfCard/СomplectationBlock/СomplectationBlock.jsx";
+import DescriptionForCard from "./componentsOfCard/DescriptionForCard/DescriptionForCard.jsx";
 
 function Card({ van }) {
-  console.log(van);
-
   const thumbPhoto = van.gallery[0].thumb;
   const fullName = van.name;
-  const name = cutText(fullName, 30);
+  const name = cutText(fullName, 25);
   const price = van.price;
   const rating = van.rating;
   const amountOfReviews = van.reviews.length;
@@ -40,91 +43,36 @@ function Card({ van }) {
       </div>
       <div className={css.info}>
         <div className={css.headerOfCard}>
-          <h2 className={css.headerOfCardText}>{name}</h2>
-          <div className={css.priceBlock}>
-            <h2 className={css.headerOfCardText}>€{price}</h2>
-            <svg className={css.svgInCard}>
-              <use href="/icons/symbol-defs.svg#icon-Property-1Default"></use>
-            </svg>
-          </div>
+          <NameOfVan name={name} />
+          <PriceBlock price={price} />
         </div>
-        <div className={css.blockReitingRevieusLocation}>
-          <svg className={css.svgReiting}>
-            <use href="/icons/symbol-defs.svg#icon-Property-1Pressed-1"></use>
-          </svg>
-          <p className={css.raitingString}>
-            {rating}({amountOfReviews} Reviews)
-          </p>
-          <BsMap className={css.iconOfMap} />
-          <p className={css.location}>{location}</p>
+        <BlockReitingRevieusLocation
+          amountOfReviews={amountOfReviews}
+          rating={rating}
+          location={location}
+        />
+        <DescriptionForCard descriptionForCard={descriptionForCard} />
+        <ComplectationBlock
+          AC={AC}
+          TV={TV}
+          bathroom={bathroom}
+          kitchen={kitchen}
+          radio={radio}
+          transmission={transmission}
+          engine={engine}
+        />
+        <div className={css.blockButtonShowMore}>
+          <Link to={`/catalog/${van.id}`}>
+            <button className={css.buttonShowMore}>Show more</button>
+          </Link>
         </div>
-        <div className={css.description}>{descriptionForCard}</div>
-        <div className={css.complectationBlock}>
-          <div className={css.transmission}>
-            <svg className={css.iconForVehicleEquipment}>
-              <use href="/icons/symbol-defs.svg#icon-diagram"></use>
-            </svg>
-            <p className={css.textEquipment}>{transmission}</p>
-          </div>
-
-          <div className={css.engine}>
-            <svg className={css.iconForVehicleEquipment}>
-              <use href="/icons/symbol-defs.svg#icon-fuel-pump"></use>
-            </svg>
-            <p className={css.textEquipment}>{engine}</p>
-          </div>
-          {kitchen && (
-            <div className={css.kitchen}>
-              <svg className={css.iconForVehicleEquipment}>
-                <use href="/icons/symbol-defs.svg#icon-cup-hot"></use>
-              </svg>
-              <p className={css.textEquipment}>Kitchen</p>
-            </div>
-          )}
-          {AC && (
-            <div className={css.AC}>
-              <svg className={css.iconForVehicleEquipment}>
-                <use href="/icons/symbol-defs.svg#icon-wind"></use>
-              </svg>
-              <p className={css.textEquipment}>AC</p>
-            </div>
-          )}
-          {TV && (
-            <div className={css.TV}>
-              <svg className={css.iconForVehicleEquipment}>
-                <use href="/icons/symbol-defs.svg#icon-tv"></use>
-              </svg>
-              <p className={css.textEquipment}>TV</p>
-            </div>
-          )}
-          {bathroom && (
-            <div className={css.bathroom}>
-              <svg className={css.iconForVehicleEquipment}>
-                <use href="/icons/symbol-defs.svg#icon-bi_droplet"></use>
-              </svg>
-              <p className={css.textEquipment}>Bathroom</p>
-            </div>
-          )}
-          {radio && (
-            <div className={css.radio}>
-              <svg className={css.iconForVehicleEquipment}>
-                <use href="/icons/symbol-defs.svg#icon-ui-radios"></use>
-              </svg>
-              <p className={css.textEquipment}>Radio</p>
-            </div>
-          )}
-              </div>
-              <div className={css.blockButtonShowMore}>
-                  <button className={css.buttonShowMore}>Show more</button>
-              </div>
-                  
       </div>
     </div>
   );
 }
 
 Card.propTypes = {
-  van: PropTypes.array.isRequired,
+  van: PropTypes.object.isRequired,
 };
 
 export default Card;

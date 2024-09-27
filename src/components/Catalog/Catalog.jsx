@@ -3,10 +3,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AllFilters from "./catalogComponents/AllFilters/AllFilters.jsx";
 import Cards from "./catalogComponents/Cards/Cards.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { setVans } from "../../redux/vansSlice";
+import { selectVans } from "../../redux/vansSelectors";
 
 function Catalog() {
-  const [vans, setVans] = useState([]);
   const [visibleCount, setVisibleCount] = useState(4);
+  const dispatch = useDispatch();
+  const vans = useSelector(selectVans);
 
   useEffect(() => {
     try {
@@ -14,7 +18,10 @@ function Catalog() {
         const response = await axios.get(
           "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers"
         );
-        setVans(response.data.items);
+
+        const vansData = response.data.items;
+
+        dispatch(setVans(vansData));
       }
 
       fetchVans();
@@ -24,13 +31,17 @@ function Catalog() {
   }, []);
 
   const loadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 4); // Збільшуємо лічильник на 4
+    setVisibleCount((prevCount) => prevCount + 4); 
   };
 
   return (
     <div className={css.catalog}>
       <AllFilters />
-      <Cards vans={vans.slice(0, visibleCount)} loadMore={loadMore} hasMore={visibleCount < vans.length}/>
+      <Cards
+        vans={vans.slice(0, visibleCount)}
+        loadMore={loadMore}
+        hasMore={visibleCount < vans.length}
+      />
     </div>
   );
 }

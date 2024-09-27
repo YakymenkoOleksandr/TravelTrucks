@@ -1,0 +1,17 @@
+.priceBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+}
+
+.headerOfCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.svgInCard {
+    width: 25px;
+    height: 24px;
+}
