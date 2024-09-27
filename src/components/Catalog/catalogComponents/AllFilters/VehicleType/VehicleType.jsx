@@ -9,13 +9,13 @@ function VehicleType() {
       <div className={css.wrapperForFilterIcons}>
         <div className={css.buttonOfFilter}>
           <svg className={css.iconForVehicleType}>
-            <use href="../../../../../public/icons/symbol-defs.svg#icon-bi_grid-1x2"></use>
+            <use href="/icons/symbol-defs.svg#icon-bi_grid-1x2"></use>
           </svg>
           <p className={css.textInFilterButton}>Van</p>
         </div>
         <div className={css.buttonOfFilter}>
           <svg className={css.iconForVehicleType}>
-            <use href="../../../../../public/icons/symbol-defs.svg#icon-bi_grid"></use>
+            <use href="/icons/symbol-defs.svg#icon-bi_grid"></use>
           </svg>
           <p className={css.textInFilterButton}>
             Fully <br />
@@ -24,7 +24,7 @@ function VehicleType() {
         </div>
         <div className={css.buttonOfFilter}>
           <svg className={css.iconForVehicleType}>
-            <use href="../../../../../public/icons/symbol-defs.svg#icon-bi_grid-3x3-gap"></use>
+            <use href="/icons/symbol-defs.svg#icon-bi_grid-3x3-gap"></use>
           </svg>
           <p className={css.textInFilterButton}>Kitchen</p>
         </div>
