@@ -1,0 +1,17 @@
+.inputField {
+  width: 527px;
+  height: 60px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  border: none;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  padding-left: 18px;
+}

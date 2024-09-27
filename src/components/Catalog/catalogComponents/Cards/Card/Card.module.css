@@ -22,9 +22,15 @@
   width: 100%;
 }
 
-.headerOfCard {
+.header {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+
+.headerOfCard {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 

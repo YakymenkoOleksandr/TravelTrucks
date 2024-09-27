@@ -3,6 +3,7 @@
     flex-direction: row;
     gap: 12px;
     align-items: center;
+    height: 32px;
 }
 
 .headerOfCard {
@@ -14,4 +15,5 @@
 .svgInCard {
     width: 25px;
     height: 24px;
+    align-items: self-start;
 }

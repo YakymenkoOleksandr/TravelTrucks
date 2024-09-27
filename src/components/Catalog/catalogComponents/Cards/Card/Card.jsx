@@ -42,15 +42,18 @@ function Card({ van }) {
         <img src={thumbPhoto} alt="Photo of van" className={css.photoOfVan} />
       </div>
       <div className={css.info}>
-        <div className={css.headerOfCard}>
-          <NameOfVan name={name} />
+        <div className={css.header}>
+          <div className={css.headerOfCard}>
+            <NameOfVan name={name} />
+            <BlockReitingRevieusLocation
+              amountOfReviews={amountOfReviews}
+              rating={rating}
+              location={location}
+            />
+          </div>
           <PriceBlock price={price} />
         </div>
-        <BlockReitingRevieusLocation
-          amountOfReviews={amountOfReviews}
-          rating={rating}
-          location={location}
-        />
+
         <DescriptionForCard descriptionForCard={descriptionForCard} />
         <ComplectationBlock
           AC={AC}

@@ -1,4 +1,33 @@
 .catalogId {
-    display: flex;
-    flex-direction: column;
+  padding-left: 64px;
+  padding-right: 64px;
+  padding-top: 48px;
+  padding-bottom: 80px;
+}
+
+.price {
+  padding-top: 16px;
+}
+
+.galery {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.galleryImage {
+  width: 292px;
+  height: 312px;
+  border-radius: 10px;
+}
+
+.description {
+    padding-top: 28px;
+}
+
+.textOfDescription {
+    color: #475467;
+    font-weight: 400;
+    font-size: 16px;
 }
