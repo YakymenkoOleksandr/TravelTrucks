@@ -6,7 +6,8 @@ function Card({ van }) {
   console.log(van);
 
   const thumbPhoto = van.gallery[0].thumb;
-  const name = van.name;
+  const fullName = van.name;
+  const name = cutText(fullName, 30);
   const price = van.price;
   const rating = van.rating;
   const amountOfReviews = van.reviews.length;

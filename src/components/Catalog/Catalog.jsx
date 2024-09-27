@@ -6,6 +6,7 @@ import Cards from "./catalogComponents/Cards/Cards.jsx";
 
 function Catalog() {
   const [vans, setVans] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(4);
 
   useEffect(() => {
     try {
@@ -22,12 +23,14 @@ function Catalog() {
     }
   }, []);
 
-   // vans.forEach(van => console.log(van));
+  const loadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 4); // Збільшуємо лічильник на 4
+  };
 
   return (
     <div className={css.catalog}>
       <AllFilters />
-      <Cards vans={vans} />
+      <Cards vans={vans.slice(0, visibleCount)} loadMore={loadMore} hasMore={visibleCount < vans.length}/>
     </div>
   );
 }
