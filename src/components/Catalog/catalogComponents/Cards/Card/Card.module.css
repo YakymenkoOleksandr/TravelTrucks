@@ -1,19 +1,210 @@
 .card {
-    width: 888px;
-    height: 368px;
-    border-radius: 20px;
-    border: 1px solid #DADDE1;
-    padding: 24px;
+  width: 888px;
+  height: 368px;
+  border-radius: 20px;
+  border: 1px solid #dadde1;
+  padding: 24px;
+  display: flex;
+  flex-direction: row;
 }
 
 .photoOfVan {
-    width: 292px;
-    height: 320px;
-    border-radius: 10px;
-    background-color: aquamarine;
-    
+  width: 292px;
+  height: 320px;
+  border-radius: 10px;
+  background-color: aquamarine;
 }
 
 .info {
-    
+  display: flex;
+  flex-direction: column;
+  padding-left: 24px;
+  width: 100%;
 }
+
+.headerOfCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.headerOfCardText {
+  font-weight: 600;
+  font-size: 24px;
+  color: #101828;
+}
+
+.svgInCard {
+  width: 25px;
+  height: 24px;
+}
+
+.svgReiting {
+  width: 16px;
+  height: 16px;
+}
+
+.priceBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+
+.blockReitingRevieusLocation {
+  padding-top: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.raitingString {
+  color: #101828;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 4px;
+  padding-right: 16px;
+}
+
+.iconOfMap {
+  width: 16px;
+  height: 16px;
+}
+
+.location {
+  padding-left: 4px;
+}
+
+.description {
+  padding-top: 24px;
+  color: #475467;
+}
+.complectationBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.iconForVehicleEquipment {
+  width: 20px;
+  height: 20px;
+}
+
+.equipment {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+}
+
+.AC {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f4f7;
+  width: 87px;
+  border-radius: 100px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.TV {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f4f7;
+  width: 87px;
+  border-radius: 100px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.bathroom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f4f7;
+  width: 130px;
+  border-radius: 100px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.kitchen {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f4f7;
+  width: 130px;
+  border-radius: 100px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.radio {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f4f7;
+  width: 130px;
+  border-radius: 100px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.transmission {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f4f7;
+  width: 130px;
+  border-radius: 100px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.engine {
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f4f7;
+    width: 130px;
+    border-radius: 100px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.textEquipment {
+  font-weight: 500;
+  font-size: 16px;
+  padding-left: 8px;
+}
+
+.blockButtonShowMore {
+  padding-top: 20px;
+}
+
+.buttonShowMore {
+  width: 166px;
+  height: 56px;
+  border-radius: 200px;
+  border: none;
+  background-color: #E44848;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.buttonShowMore:hover {
+  background-color: #D84343;
+}
+
+
+

@@ -22,12 +22,12 @@ function Catalog() {
     }
   }, []);
 
-  // vans.forEach(van => console.log(van));
+   // vans.forEach(van => console.log(van));
 
   return (
     <div className={css.catalog}>
       <AllFilters />
-      <Cards />
+      <Cards vans={vans} />
     </div>
   );
 }
