@@ -1,3 +1,4 @@
 .catalogId {
     display: flex;
+    flex-direction: column;
 }

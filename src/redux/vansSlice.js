@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  vans: [],
-};
-
 const vansSlice = createSlice({
   name: "vans",
-  initialState,
+  initialState: {
+    vans: [], 
+  },
   reducers: {
     setVans: (state, action) => {
       state.vans = action.payload; 
