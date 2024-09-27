@@ -9,7 +9,7 @@ function VehicleEquipment() {
       <div className={css.wrapperForFilterIcons}>
         <div className={css.buttonOfFilter}>
           <svg className={css.iconForVehicleEquipment}>
-            <use href="../../../../../public/icons/symbol-defs.svg#icon-wind"></use>
+            <use href="/icons/symbol-defs.svg#icon-wind"></use>
           </svg>
           <p className={css.textInFilterButton}>AC</p>
         </div>
