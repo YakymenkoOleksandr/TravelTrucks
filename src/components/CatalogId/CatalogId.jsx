@@ -5,13 +5,13 @@ import { selectVanById } from "../../redux/vansSelectors";
 import NameOfVan from "../Catalog/catalogComponents/Cards/Card/componentsOfCard/NameOfVan/NameOfVan";
 import BlockReitingRevieusLocation from "../Catalog/catalogComponents/Cards/Card/componentsOfCard/BlockReitingRevieusLocation/BlockReitingRevieusLocation";
 import PriceBlock from "../Catalog/catalogComponents/Cards/Card/componentsOfCard/PriceBlock/PriceBlock";
-import Form from "../CatalogId/componentOfCatalogId/Form/Form.jsx"
+import Form from "../CatalogId/componentOfCatalogId/Form/Form.jsx";
+import Features from "./componentOfCatalogId/Features/Features.jsx";
 
 function CatalogId() {
   const { id } = useParams();
   const van = useSelector((state) => selectVanById(state, id));
-
-  console.log("Selected van:", van);
+  console.log(van);
 
   if (!van) {
     return <div>Loading...</div>;
@@ -42,10 +42,25 @@ function CatalogId() {
       </div>
       <div className={css.description}>
         <p className={css.textOfDescription}>{van.description}</p>
-          </div>
-          <div>
-              <Form />
-          </div>
+      </div>
+      <div className={css.FeaturesAndForm}>
+        <Features
+          AC={van.AC}
+          TV={van.TV}
+          bathroom={van.bathroom}
+          kitchen={van.kitchen}
+          radio={van.radio}
+          transmission={van.transmission}
+          engine={van.engine}
+          form={van.form}
+          length={van.length}
+          width={van.width}
+          height={van.height}
+          tank={van.tank}
+          consumption={van.consumption}
+        />
+        <Form />
+      </div>
     </div>
   );
 }

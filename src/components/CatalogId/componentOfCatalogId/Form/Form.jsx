@@ -11,14 +11,20 @@ function Form() {
     }
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div className={css.form}>
       <div className={css.headerOfForm}>
         <h3>Book your campervan now</h3>
-        <p className={css.textUnderHeader}>Stay connected! We are always ready to help you.</p>
+        <p className={css.textUnderHeader}>
+          Stay connected! We are always ready to help you.
+        </p>
       </div>
       <div className={css.inputs}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className={css.wrapperForInputs}>
             <div className={css.inputField} onClick={() => handleDivClick(0)}>
               <input
@@ -46,7 +52,9 @@ function Form() {
               ></input>
             </div>
             <div className={css.submit}>
-              <button className={css.submitButton} type="submit">Send</button>
+              <button className={css.submitButton} type="submit">
+                Send
+              </button>
             </div>
           </div>
         </form>

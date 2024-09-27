@@ -31,3 +31,10 @@
     font-weight: 400;
     font-size: 16px;
 }
+
+.FeaturesAndForm {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-top: 44px;
+}
