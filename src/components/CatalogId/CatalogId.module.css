@@ -38,3 +38,33 @@
   gap: 40px;
   margin-top: 44px;
 }
+
+.hendlerFeaturesAndReviews {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  border-bottom: 1px solid #DADDE1;
+  padding-bottom: 0;
+  margin-bottom: 24px;
+  padding-top: 60px;
+}
+
+.hendlerFeaturesAndReviews h3 {
+  cursor: pointer;
+  padding-bottom: 24px;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.hendlerFeaturesAndReviews h3.activeTab {
+  border-bottom: 5px solid red;
+  margin-bottom: -3px;
+}
+
+.features {
+  cursor: pointer;
+}
+
+.reviews {
+  cursor: pointer;
+}

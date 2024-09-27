@@ -1,3 +1,4 @@
+import { useState } from "react";
 import css from "../../components/CatalogId/CatalogId.module.css";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -7,15 +8,21 @@ import BlockReitingRevieusLocation from "../Catalog/catalogComponents/Cards/Card
 import PriceBlock from "../Catalog/catalogComponents/Cards/Card/componentsOfCard/PriceBlock/PriceBlock";
 import Form from "../CatalogId/componentOfCatalogId/Form/Form.jsx";
 import Features from "./componentOfCatalogId/Features/Features.jsx";
+import Reviews from "./componentOfCatalogId/Reviews/Reviews.jsx";
 
 function CatalogId() {
   const { id } = useParams();
   const van = useSelector((state) => selectVanById(state, id));
-  console.log(van);
+
+  const [activeTab, setActiveTab] = useState("features");
 
   if (!van) {
     return <div>Loading...</div>;
   }
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
 
   return (
     <div className={css.catalogId}>
@@ -43,22 +50,45 @@ function CatalogId() {
       <div className={css.description}>
         <p className={css.textOfDescription}>{van.description}</p>
       </div>
+
+      <div className={css.hendlerFeaturesAndReviews}>
+        <h3
+          className={`${css.features} ${
+            activeTab === "features" ? css.activeTab : ""
+          }`}
+          onClick={() => handleTabClick("features")}
+        >
+          Features
+        </h3>
+        <h3
+          className={`${css.reviews} ${
+            activeTab === "reviews" ? css.activeTab : ""
+          }`}
+          onClick={() => handleTabClick("reviews")}
+        >
+          Reviews
+        </h3>
+      </div>
+
       <div className={css.FeaturesAndForm}>
-        <Features
-          AC={van.AC}
-          TV={van.TV}
-          bathroom={van.bathroom}
-          kitchen={van.kitchen}
-          radio={van.radio}
-          transmission={van.transmission}
-          engine={van.engine}
-          form={van.form}
-          length={van.length}
-          width={van.width}
-          height={van.height}
-          tank={van.tank}
-          consumption={van.consumption}
-        />
+        {activeTab === "features" && (
+          <Features
+            AC={van.AC}
+            TV={van.TV}
+            bathroom={van.bathroom}
+            kitchen={van.kitchen}
+            radio={van.radio}
+            transmission={van.transmission}
+            engine={van.engine}
+            form={van.form}
+            length={van.length}
+            width={van.width}
+            height={van.height}
+            tank={van.tank}
+            consumption={van.consumption}
+          />
+        )}
+        {activeTab === "reviews" && <Reviews reviews={van.reviews} />}
         <Form />
       </div>
     </div>
