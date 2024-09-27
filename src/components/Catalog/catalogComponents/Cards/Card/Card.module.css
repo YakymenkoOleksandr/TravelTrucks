@@ -1,0 +1,19 @@
+.card {
+    width: 888px;
+    height: 368px;
+    border-radius: 20px;
+    border: 1px solid #DADDE1;
+    padding: 24px;
+}
+
+.photoOfVan {
+    width: 292px;
+    height: 320px;
+    border-radius: 10px;
+    background-color: aquamarine;
+    
+}
+
+.info {
+    
+}
