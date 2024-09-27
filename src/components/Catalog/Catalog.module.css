@@ -1,0 +1,14 @@
+.catalog {
+    display: flex;
+    flex-direction: row;
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-top: 48px;
+    padding-bottom: 52px;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+}
+
