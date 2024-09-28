@@ -1,11 +1,12 @@
 import css from "../Catalog/Catalog.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import AllFilters from "./catalogComponents/AllFilters/AllFilters.jsx";
 import Cards from "./catalogComponents/Cards/Cards.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setVans } from "../../redux/vansSlice";
-import { selectVans} from "../../redux/vansSelectors";
+import { selectVans } from "../../redux/vansSelectors";
+
 
 
 function Catalog() {
@@ -14,7 +15,11 @@ function Catalog() {
   const vans = useSelector(selectVans);
   const filters = useSelector((state) => state.vans.filters);
   console.log(vans);
-  
+  const filterVans = useMemo(() => {
+    return vans.filter(({ AC }) => {
+      return filters.AC === AC;
+    })
+  },[filters, vans]);
 
 
   useEffect(() => {
@@ -47,9 +52,9 @@ function Catalog() {
     <div className={css.catalog}>
       <AllFilters />
       <Cards
-        vans={vans.slice(0, visibleCount)}
         loadMore={loadMore}
         hasMore={visibleCount < vans.length}
+        vans={filterVans}
       />
     </div>
   );

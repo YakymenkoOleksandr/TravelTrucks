@@ -75,7 +75,6 @@ const vansSlice = createSlice({
     resetFilters: (state) => {
       state.filters = {
         AC: false,
-        Gear: "",
         Kitchen: false,
         TV: false,
         Bathroom: false,

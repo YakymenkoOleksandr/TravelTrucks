@@ -20,7 +20,6 @@ function Forma() {
 
   const handleSubmit = (values, actions) => {
     toast.success("Ваше замовлення оформлюється!");
-    console.log(values);
     actions.resetForm();
   };
 
