@@ -7,7 +7,7 @@ function VehicleEquipment() {
   const filters = useSelector((state) => state.vans.filters);
 
   const handleTransmissionChange = () => {
-    const newTransmission = filters.Transmission === "Manual" ? "Automatic" : "Manual";
+    const newTransmission = filters.transmission === "Manual" ? "Automatic" : "Manual";
     dispatch(setTransmission({ value: newTransmission }));
   };
 
@@ -30,8 +30,8 @@ function VehicleEquipment() {
 
         {/* Kitchen Filter */}
         <div
-          className={`${css.buttonOfFilter} ${filters.Kitchen ? css.active : ""}`}
-          onClick={() => dispatch(toggleFilter("Kitchen"))}
+          className={`${css.buttonOfFilter} ${filters.kitchen ? css.active : ""}`}
+          onClick={() => dispatch(toggleFilter("kitchen"))}
         >
           <svg className={css.iconForVehicleEquipment}>
             <use href="/icons/symbol-defs.svg#icon-Group"></use>
@@ -52,8 +52,8 @@ function VehicleEquipment() {
 
         {/* Bathroom Filter */}
         <div
-          className={`${css.buttonOfFilter} ${filters.Bathroom ? css.active : ""}`}
-          onClick={() => dispatch(toggleFilter("Bathroom"))}
+          className={`${css.buttonOfFilter} ${filters.bathroom ? css.active : ""}`}
+          onClick={() => dispatch(toggleFilter("bathroom"))}
         >
           <svg className={css.iconForVehicleEquipment}>
             <use href="/icons/symbol-defs.svg#icon-bi_droplet"></use>
@@ -64,7 +64,7 @@ function VehicleEquipment() {
         {/* Transmission Filter */}
         <div className={css.transmissionFilters}>
           <div
-            className={`${css.buttonOfFilter} ${filters.Transmission === "Automatic" ? css.active : ""}`}
+            className={`${css.buttonOfFilter} ${filters.transmission === "Automatic" ? css.active : ""}`}
             onClick={handleTransmissionChange} // Toggle transmission on click
           >
             <svg className={css.iconForVehicleEquipment}>

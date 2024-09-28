@@ -7,8 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setVans } from "../../redux/vansSlice";
 import { selectVans } from "../../redux/vansSelectors";
 
-
-
 function Catalog() {
   const [visibleCount, setVisibleCount] = useState(4);
   const dispatch = useDispatch();
@@ -16,11 +14,30 @@ function Catalog() {
   const filters = useSelector((state) => state.vans.filters);
   console.log(vans);
   const filterVans = useMemo(() => {
-    return vans.filter(({ AC }) => {
-      return filters.AC === AC;
-    })
-  },[filters, vans]);
+    console.log(filters);
 
+    return vans.filter(
+      ({
+        AC,
+        TV,
+        kitchen,
+        bathroom,
+        transmission,
+        Location,
+        form
+      }) => {
+        return (
+      (filters.AC ? filters.AC === AC : true) &&
+      (filters.TV ? filters.TV === TV : true) &&
+      (filters.kitchen ? filters.kitchen === kitchen : true) &&
+      (filters.bathroom ? filters.bathroom === bathroom : true) &&
+      (filters.transmission ? filters.transmission.toLowerCase() === transmission.toLowerCase() : true) &&
+      (filters.Location ? filters.Location.toLowerCase() === Location.toLowerCase() : true) &&
+      (filters.form ? filters.form === form : true) 
+    );
+      }
+    );
+  }, [filters, vans]);
 
   useEffect(() => {
     try {
@@ -40,13 +57,12 @@ function Catalog() {
     }
   }, []);
 
-  useEffect(() => {
-  
-  }, [filters, dispatch]);
+  useEffect(() => {}, [filters, dispatch]);
 
   const loadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 4); 
+    setVisibleCount((prevCount) => prevCount + 4);
   };
+
 
   return (
     <div className={css.catalog}>

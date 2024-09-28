@@ -8,15 +8,12 @@ const vansSlice = createSlice({
     selectedVans: [],
     filters: {
       AC: false,
-      Gear: "",
-      Kitchen: false,
       TV: false,
-      Bathroom: false,
-      isVan: false,
-      isFullyIntegrated: false,
-      isAlcove: false,
-      Transmission: "Manual", // Set default transmission to Manual
+      kitchen: false,
+      bathroom: false,
+      transmission: "Manual", // Set default transmission to Manual
       Location: "",
+      forms: []
     },
   },
 
@@ -26,18 +23,19 @@ const vansSlice = createSlice({
       state.filteredVans = action.payload; // Ініціалізуємо відфільтровані дані всіма вантажівками
     },
     applyFilters: (state, action) => {
-      const filters = action.payload;
-      state.filteredVans = state.vans.filter(van => {
-        return (
-          (filters.AC ? van.AC === filters.AC : true) &&
-          (filters.Gear ? van.Gear === filters.Gear : true) &&
-          (filters.Kitchen ? van.Kitchen === filters.Kitchen : true) &&
-          (filters.Transmission ? van.Transmission === filters.Transmission : true) &&
-          (filters.Location ? van.Location.includes(filters.Location) : true)
-          // Додайте інші фільтри за потреби
-        );
-      });
-    },
+  const filters = action.payload;
+  state.filteredVans = state.vans.filter((van) => {
+    return (
+      (filters.AC ? van.AC === filters.AC : true) &&
+      (filters.TV ? van.TV === filters.TV : true) &&
+      (filters.kitchen ? van.kitchen === filters.kitchen : true) &&
+      (filters.bathroom ? van.bathroom === filters.bathroom : true) &&
+      (filters.transmission ? van.transmission === filters.transmission : true) &&
+      (filters.Location ? van.Location.includes(filters.Location) : true) &&
+      (filters.form ? van.form === filters.form : true)
+    );
+  });
+},
     toggleVanSelection: (state, action) => {
       const vanId = action.payload;
       if (state.selectedVans.includes(vanId)) {
@@ -53,7 +51,6 @@ const vansSlice = createSlice({
       // Toggle the current filter
       state.filters[filterName] = !currentValue;
 
-
       // Get the number of active filters
       const activeFiltersCount = Object.values(state.filters).filter(
         Boolean
@@ -67,21 +64,35 @@ const vansSlice = createSlice({
     },
     setTransmission: (state, action) => {
       const { value } = action.payload;
-      state.filters.Transmission = value; // Set the selected transmission value
+      state.filters.transmission = value; // Set the selected transmission value
     },
     setLocation: (state, action) => {
       state.filters.Location = action.payload; // Задаємо нову локацію
     },
+    setForm: (state, action) => {
+      state.filters.form = action.payload; // Задаємо нове значення форми (тип кузова)
+    },
+    toggleForm: (state, action) => {
+      const formType = action.payload;
+      const index = state.filters.forms.indexOf(formType);
+      if (index > -1) {
+        state.filters.forms.splice(index, 1); // Якщо тип вже вибраний, видаляємо його
+      } else {
+        state.filters.forms.push(formType); // Якщо не вибраний, додаємо
+      }
+    },
     resetFilters: (state) => {
       state.filters = {
         AC: false,
-        Kitchen: false,
+        kitchen: false,
         TV: false,
-        Bathroom: false,
+        bathroom: false,
         isVan: false,
         isFullyIntegrated: false,
         isAlcove: false,
-        Transmission: "Manual", // Reset Transmission filter to Manual
+        transmission: "Manual",
+        Location: "",
+         forms: [], 
       };
     },
   },
@@ -90,11 +101,12 @@ const vansSlice = createSlice({
 export const {
   setVans,
   toggleVanSelection,
-  setTransmission, 
+  setTransmission,
   resetFilters,
   toggleFilter,
   applyFilters,
   setLocation,
+  setForm
 } = vansSlice.actions;
 
 export default vansSlice.reducer;
