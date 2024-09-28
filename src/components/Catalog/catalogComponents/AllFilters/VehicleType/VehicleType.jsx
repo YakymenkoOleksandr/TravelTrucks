@@ -32,7 +32,7 @@ function VehicleType() {
           <svg className={css.iconForVehicleType}>
             <use href="/icons/symbol-defs.svg#icon-bi_grid"></use>
           </svg>
-          <p className={css.textInFilterButton}>Fully Integrated</p>
+          <p className={css.textInFilterButton}>Fully<br /> Integrated</p>
         </div>
         <div
           className={`${css.buttonOfFilter} ${filters.forms.includes("alcove") ? css.active : ""}`} 

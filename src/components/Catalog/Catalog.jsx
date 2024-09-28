@@ -12,29 +12,23 @@ function Catalog() {
   const dispatch = useDispatch();
   const vans = useSelector(selectVans);
   const filters = useSelector((state) => state.vans.filters);
-  console.log(vans);
   const filterVans = useMemo(() => {
-    console.log(filters);
 
     return vans.filter(
-      ({
-        AC,
-        TV,
-        kitchen,
-        bathroom,
-        transmission,
-        Location,
-        form
-      }) => {
+      ({ AC, TV, kitchen, bathroom, transmission, Location, form }) => {
         return (
-      (filters.AC ? filters.AC === AC : true) &&
-      (filters.TV ? filters.TV === TV : true) &&
-      (filters.kitchen ? filters.kitchen === kitchen : true) &&
-      (filters.bathroom ? filters.bathroom === bathroom : true) &&
-      (filters.transmission ? filters.transmission.toLowerCase() === transmission.toLowerCase() : true) &&
-      (filters.Location ? filters.Location.toLowerCase() === Location.toLowerCase() : true) &&
-      (filters.form ? filters.form === form : true) 
-    );
+          (filters.AC ? filters.AC === AC : true) &&
+          (filters.TV ? filters.TV === TV : true) &&
+          (filters.kitchen ? filters.kitchen === kitchen : true) &&
+          (filters.bathroom ? filters.bathroom === bathroom : true) &&
+          (filters.transmission
+            ? filters.transmission.toLowerCase() === transmission.toLowerCase()
+            : true) &&
+          (filters.Location
+            ? filters.Location.toLowerCase() === Location.toLowerCase()
+            : true) &&
+          (filters.forms.length > 0 ? filters.forms.includes(form) : true)
+        );
       }
     );
   }, [filters, vans]);
@@ -45,9 +39,8 @@ function Catalog() {
         const response = await axios.get(
           "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers"
         );
-
+       
         const vansData = response.data.items;
-
         dispatch(setVans(vansData));
       }
 
@@ -55,22 +48,26 @@ function Catalog() {
     } catch (error) {
       console.error("Error searching vans:", error);
     }
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    setVisibleCount(4); // Скидаємо до початкового значення
+  }, [filters]);
 
   useEffect(() => {}, [filters, dispatch]);
 
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 4);
   };
-
-
+  console.log(visibleCount, filterVans.length);
+  
   return (
     <div className={css.catalog}>
       <AllFilters />
       <Cards
         loadMore={loadMore}
-        hasMore={visibleCount < vans.length}
-        vans={filterVans}
+        hasMore={visibleCount < filterVans.length} // Якщо є більше вантажівок, ніж видно, показуємо кнопку
+        vans={filterVans.slice(0, visibleCount)} // Відображаємо лише обмежену кількість вантажівок
       />
     </div>
   );

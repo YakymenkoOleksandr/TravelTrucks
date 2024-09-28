@@ -32,10 +32,19 @@ const vansSlice = createSlice({
       (filters.bathroom ? van.bathroom === filters.bathroom : true) &&
       (filters.transmission ? van.transmission === filters.transmission : true) &&
       (filters.Location ? van.Location.includes(filters.Location) : true) &&
-      (filters.form ? van.form === filters.form : true)
+      (filters.forms.length > 0 ? filters.forms.includes(van.form) : true)
     );
   });
-},
+    },
+    toggleForm: (state, action) => {
+      const formType = action.payload;
+      const index = state.filters.forms.indexOf(formType);
+      if (index > -1) {
+        state.filters.forms.splice(index, 1); // Якщо тип вже вибраний, видаляємо його
+      } else {
+        state.filters.forms.push(formType); // Якщо не вибраний, додаємо
+      }
+    },
     toggleVanSelection: (state, action) => {
       const vanId = action.payload;
       if (state.selectedVans.includes(vanId)) {
@@ -70,16 +79,7 @@ const vansSlice = createSlice({
       state.filters.Location = action.payload; // Задаємо нову локацію
     },
     setForm: (state, action) => {
-      state.filters.form = action.payload; // Задаємо нове значення форми (тип кузова)
-    },
-    toggleForm: (state, action) => {
-      const formType = action.payload;
-      const index = state.filters.forms.indexOf(formType);
-      if (index > -1) {
-        state.filters.forms.splice(index, 1); // Якщо тип вже вибраний, видаляємо його
-      } else {
-        state.filters.forms.push(formType); // Якщо не вибраний, додаємо
-      }
+      state.filters.forms = action.payload; // Задаємо нове значення форми (тип кузова)
     },
     resetFilters: (state) => {
       state.filters = {
@@ -92,7 +92,7 @@ const vansSlice = createSlice({
         isAlcove: false,
         transmission: "Manual",
         Location: "",
-         forms: [], 
+        form: [], 
       };
     },
   },
@@ -106,7 +106,8 @@ export const {
   toggleFilter,
   applyFilters,
   setLocation,
-  setForm
+  setForm,
+  toggleForm
 } = vansSlice.actions;
 
 export default vansSlice.reducer;
