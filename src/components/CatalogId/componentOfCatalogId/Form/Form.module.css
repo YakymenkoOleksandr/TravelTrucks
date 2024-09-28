@@ -72,3 +72,21 @@
 .submitButton:hover {
   background-color: #D84343;
 }
+
+.inputFieldCalendar {
+  width: 527px;
+  height: 60px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.inputCalendar {
+  border: none;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  padding-left: 18px;
+}

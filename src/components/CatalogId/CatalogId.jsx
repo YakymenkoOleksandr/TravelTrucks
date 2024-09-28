@@ -6,14 +6,14 @@ import { selectVanById } from "../../redux/vansSelectors";
 import NameOfVan from "../Catalog/catalogComponents/Cards/Card/componentsOfCard/NameOfVan/NameOfVan";
 import BlockReitingRevieusLocation from "../Catalog/catalogComponents/Cards/Card/componentsOfCard/BlockReitingRevieusLocation/BlockReitingRevieusLocation";
 import PriceBlock from "../Catalog/catalogComponents/Cards/Card/componentsOfCard/PriceBlock/PriceBlock";
-import Form from "../CatalogId/componentOfCatalogId/Form/Form.jsx";
+import Forma from "../CatalogId/componentOfCatalogId/Form/Form.jsx";
 import Features from "./componentOfCatalogId/Features/Features.jsx";
 import Reviews from "./componentOfCatalogId/Reviews/Reviews.jsx";
 
 function CatalogId() {
   const { id } = useParams();
   const van = useSelector((state) => selectVanById(state, id));
-
+  
   const [activeTab, setActiveTab] = useState("features");
 
   if (!van) {
@@ -89,7 +89,7 @@ function CatalogId() {
           />
         )}
         {activeTab === "reviews" && <Reviews reviews={van.reviews} />}
-        <Form />
+        <Forma />
       </div>
     </div>
   );

@@ -5,12 +5,17 @@ import AllFilters from "./catalogComponents/AllFilters/AllFilters.jsx";
 import Cards from "./catalogComponents/Cards/Cards.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setVans } from "../../redux/vansSlice";
-import { selectVans } from "../../redux/vansSelectors";
+import { selectVans} from "../../redux/vansSelectors";
+
 
 function Catalog() {
   const [visibleCount, setVisibleCount] = useState(4);
   const dispatch = useDispatch();
   const vans = useSelector(selectVans);
+  const filters = useSelector((state) => state.vans.filters);
+  console.log(vans);
+  
+
 
   useEffect(() => {
     try {
@@ -29,6 +34,10 @@ function Catalog() {
       console.error("Error searching vans:", error);
     }
   }, []);
+
+  useEffect(() => {
+  
+  }, [filters, dispatch]);
 
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 4); 

@@ -1,9 +1,16 @@
 import css from "./Form.module.css";
-import SelectDay from "../SelectDay/SelectDay.jsx";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-function Form() {
-  const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+function Forma() {
+  const inputRefs = [useRef(null), useRef(null), useRef(null)];
+  const [startDate, setStartDate] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const handleDivClick = (index) => {
     if (inputRefs[index].current) {
@@ -11,9 +18,21 @@ function Form() {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (values, actions) => {
+    toast.success("Ваше замовлення оформлюється!");
+    console.log(values);
+    actions.resetForm();
   };
+
+  const FeedbackSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    email: Yup.string().email("Must be a valid email!").required("Required"),
+    bookingDate: Yup.date().required("Booking date is required"),
+    comment: Yup.string().min(2, "Too Short!").max(300, "Too Long!"),
+  });
 
   return (
     <div className={css.form}>
@@ -23,44 +42,73 @@ function Form() {
           Stay connected! We are always ready to help you.
         </p>
       </div>
+      <ToastContainer /> {/* Додаємо контейнер для тостерів */}
       <div className={css.inputs}>
-        <form onSubmit={handleSubmit}>
-          <div className={css.wrapperForInputs}>
-            <div className={css.inputField} onClick={() => handleDivClick(0)}>
-              <input
-                className={css.input}
-                type="text"
-                placeholder="Name*"
-                ref={inputRefs[0]}
-              ></input>
-            </div>
-            <div className={css.inputField} onClick={() => handleDivClick(1)}>
-              <input
-                className={css.input}
-                type="email"
-                placeholder="Email*"
-                ref={inputRefs[1]}
-              ></input>
-            </div>
-            <SelectDay />
-            <div className={css.inputComent} onClick={() => handleDivClick(2)}>
-              <input
-                className={css.input}
-                type="text"
-                placeholder="Comment"
-                ref={inputRefs[2]}
-              ></input>
-            </div>
-            <div className={css.submit}>
-              <button className={css.submitButton} type="submit">
-                Send
-              </button>
-            </div>
-          </div>
-        </form>
+        <Formik
+          initialValues={{ name: "", email: "", comment: "", bookingDate: null }}
+          onSubmit={handleSubmit}
+          validationSchema={FeedbackSchema}
+        >
+          {({ setFieldValue }) => (
+            <Form>
+              <div className={css.wrapperForInputs}>
+                <div className={css.inputField} onClick={() => handleDivClick(0)}>
+                  <Field
+                    className={css.input}
+                    type="text"
+                    name="name"
+                    placeholder="Name*"
+                    innerRef={inputRefs[0]}
+                  />
+                </div>
+
+                <div className={css.inputField} onClick={() => handleDivClick(1)}>
+                  <Field
+                    className={css.input}
+                    type="email"
+                    name="email"
+                    placeholder="Email*"
+                    innerRef={inputRefs[1]}
+                  />
+                </div>
+
+                <div className={css.inputFieldCalendar} onClick={() => setOpen((prev) => !prev)}>
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) => {
+                      setStartDate(date);
+                      setFieldValue("bookingDate", date); // Встановлюємо дату у Formik
+                      setOpen(false);
+                    }}
+                    placeholderText="Booking date*"
+                    className={css.inputCalendar}
+                    open={open}
+                    onClickOutside={() => setOpen(false)}
+                  />
+                </div>
+
+                <div className={css.inputComent} onClick={() => handleDivClick(2)}>
+                  <Field
+                    className={css.input}
+                    type="text"
+                    name="comment"
+                    placeholder="Comment"
+                    innerRef={inputRefs[2]}
+                  />
+                </div>
+
+                <div className={css.submit}>
+                  <button className={css.submitButton} type="submit">
+                    Send
+                  </button>
+                </div>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );
 }
 
-export default Form;
+export default Forma;
