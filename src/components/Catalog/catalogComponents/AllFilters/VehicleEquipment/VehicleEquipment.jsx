@@ -21,7 +21,6 @@ function VehicleEquipment() {
         <h3 className={css.headerOfVehicleEquipment}>Vehicle equipment</h3>
       </div>
       <div className={css.wrapperForFilterIcons}>
-        {/* AC Filter */}
         <div
           className={`${css.buttonOfFilter} ${filters.AC ? css.active : ""}`}
           onClick={() => dispatch(toggleFilter("AC"))}
@@ -32,7 +31,6 @@ function VehicleEquipment() {
           <p className={css.textInFilterButton}>AC</p>
         </div>
 
-        {/* Kitchen Filter */}
         <div
           className={`${css.buttonOfFilter} ${
             filters.kitchen ? css.active : ""
@@ -45,7 +43,6 @@ function VehicleEquipment() {
           <p className={css.textInFilterButton}>Kitchen</p>
         </div>
 
-        {/* TV Filter */}
         <div
           className={`${css.buttonOfFilter} ${filters.TV ? css.active : ""}`}
           onClick={() => dispatch(toggleFilter("TV"))}
@@ -56,7 +53,6 @@ function VehicleEquipment() {
           <p className={css.textInFilterButton}>TV</p>
         </div>
 
-        {/* Bathroom Filter */}
         <div
           className={`${css.buttonOfFilter} ${
             filters.bathroom ? css.active : ""
@@ -69,7 +65,6 @@ function VehicleEquipment() {
           <p className={css.textInFilterButton}>Bathroom</p>
         </div>
 
-        {/* Transmission Filter */}
         <div
           className={`${css.buttonOfFilter} ${
             filters.transmission === "Automatic" ? css.active : ""
