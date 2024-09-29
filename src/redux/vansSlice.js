@@ -32,21 +32,19 @@ const vansSlice = createSlice({
       state.vans = action.payload;
       state.filteredVans = action.payload;
     },
-    applyFilters: (state) => {
-      const filters = state.filters;
-      state.filteredVans = state.vans.filter((van) => {
-        return (
-          (filters.AC ? van.AC === filters.AC : true) &&
-          (filters.TV ? van.TV === filters.TV : true) &&
-          (filters.kitchen ? van.kitchen === filters.kitchen : true) &&
-          (filters.bathroom ? van.bathroom === filters.bathroom : true) &&
-          (filters.transmission
-            ? van.transmission === filters.transmission
-            : true) &&
-          (filters.location ? van.location.includes(filters.location) : true) &&
-          (filters.forms.length > 0 ? filters.forms.includes(van.form) : true)
-        );
-      });
+    setLocation: (state, action) => {
+      state.temporaryFilters.location = action.payload;
+    },
+    setForm: (state, action) => {
+      state.temporaryFilters.forms = action.payload;
+    },
+    setActiveFilters: (state) => {
+      state.filters = { ...state.temporaryFilters };
+    },
+    setTransmission: (state, action) => {
+      const { value } = action.payload;
+      state.temporaryFilters.transmission = value;
+      state.filters.transmission = value;
     },
     toggleForm: (state, action) => {
       const formType = action.payload;
@@ -69,11 +67,7 @@ const vansSlice = createSlice({
       const filterName = action.payload;
       state.filters[filterName] = !state.filters[filterName];
     },
-    setTransmission: (state, action) => {
-      const { value } = action.payload;
-      state.temporaryFilters.transmission = value;
-      state.filters.transmission = value;
-    },
+
     toggleFavorite: (state, action) => {
       const vanId = action.payload;
       if (state.favorites.includes(vanId)) {
@@ -82,16 +76,22 @@ const vansSlice = createSlice({
         state.favorites.push(vanId);
       }
     },
-    setLocation: (state, action) => {
-      state.temporaryFilters.location = action.payload;
+    applyFilters: (state) => {
+      const filters = state.filters;
+      state.filteredVans = state.vans.filter((van) => {
+        return (
+          (filters.AC ? van.AC === filters.AC : true) &&
+          (filters.TV ? van.TV === filters.TV : true) &&
+          (filters.kitchen ? van.kitchen === filters.kitchen : true) &&
+          (filters.bathroom ? van.bathroom === filters.bathroom : true) &&
+          (filters.transmission
+            ? van.transmission === filters.transmission
+            : true) &&
+          (filters.location ? van.location.includes(filters.location) : true) &&
+          (filters.forms.length > 0 ? filters.forms.includes(van.form) : true)
+        );
+      });
     },
-    setForm: (state, action) => {
-      state.temporaryFilters.forms = action.payload;
-    },
-    setActiveFilters: (state) => {
-      state.filters = { ...state.temporaryFilters };
-    },
-
     resetFilters: (state) => {
       state.filters = {
         AC: false,
