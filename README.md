@@ -55,13 +55,12 @@
 3. Запустіть проект:
    npm run dev
 
-Інформація про автора
-ПІБ: Якименко Олександр Володимирович
-Телефон: +380687877431
-E-mail: yakymenko_olekandr@ukr.net, yakymenkooleksandr1@gmail.com
-Освіта: Вища НЮУ ім. Я. Мудрого, курси GOIT QA, GOIT FullStack
-Додаткова інформація
-Цей шаблон забезпечує мінімальну налаштування для запуску React у Vite з HMR та деякими правилами ESLint.
+## Інформація про автора
+
+- **ПІБ**: Якименко Олександр Володимирович
+- **Телефон**: +380687877431
+- **E-mail**: [yakymenko_olekandr@ukr.net](mailto:yakymenko_olekandr@ukr.net), [yakymenkooleksandr1@gmail.com](mailto:yakymenkooleksandr1@gmail.com)
+- **Освіта**: Вища НЮУ ім. Я. Мудрого, курси GOIT QA, GOIT FullStack
 
 На даний момент доступні два офіційні плагіни:
 
