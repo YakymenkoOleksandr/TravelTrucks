@@ -7,13 +7,13 @@ function VehicleType() {
   const filters = useSelector((state) => state.vans.filters);
 
   const handleFilterClick = (formType) => {
-    dispatch(toggleForm(formType)); // Додаємо/видаляємо обраний тип кузова
+    dispatch(toggleForm(formType));
   };
 
   return (
     <div className={css.wrapperForVehicleType}>
       <div className={css.wrapperForHeader}>
-        <h3 className={css.headerOfVehicleType}>Тип кузова</h3>
+        <h3 className={css.headerOfVehicleType}>Vehicle type</h3>
       </div>
       <div className={css.wrapperForFilterIcons}>
         <div

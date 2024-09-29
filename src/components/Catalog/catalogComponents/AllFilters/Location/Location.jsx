@@ -2,12 +2,12 @@ import css from "./Location.module.css";
 import { BsMap } from "react-icons/bs";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { setLocation } from "../../../../../redux/vansSlice"; // Імпортуємо екшен setLocation
+import { setLocation } from "../../../../../redux/vansSlice"; 
 
 
 function Location() {
   const inputRef = useRef(null);
-  const dispatch = useDispatch(); // Додаємо хук для диспетчера
+  const dispatch = useDispatch(); 
 
   const handleClick = () => {
     if (inputRef.current) {
@@ -18,13 +18,13 @@ function Location() {
   const handleInputKeyDown = (event) => {
   if (event.key === 'Enter') {
     const location = event.target.value;
-    dispatch(setLocation(location)); // Викликаємо екшен для збереження локації у Redux
+    dispatch(setLocation(location)); 
   }
 };
 
   const handleInputChange = (event) => {
     const location = event.target.value;
-    dispatch(setLocation(location)); // Викликаємо екшен для збереження локації у Redux
+    dispatch(setLocation(location)); 
   };
 
   return (
@@ -35,8 +35,8 @@ function Location() {
         <input
           className={css.inputOfBlockLocation}
           ref={inputRef}
-          onChange={handleInputChange} // Додаємо обробник зміни введення
-          onKeyDown={handleInputKeyDown} // Додаємо обробник натискання клавіші
+          onChange={handleInputChange} 
+          onKeyDown={handleInputKeyDown} 
         
           placeholder="City"
         ></input>

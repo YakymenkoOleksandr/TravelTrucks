@@ -26,9 +26,11 @@ const vansSlice = createSlice({
       forms: [],
     },
   },
-
+  
+  
   reducers: {
     setVans: (state, action) => {
+      console.log("Received vans:", action.payload);
       state.vans = action.payload;
       state.filteredVans = action.payload; 
     },
@@ -91,6 +93,7 @@ const vansSlice = createSlice({
     setActiveFilters: (state) => {
       state.filters = { ...state.temporaryFilters }; 
     },
+    
     resetFilters: (state) => {
       state.filters = {
         AC: false,

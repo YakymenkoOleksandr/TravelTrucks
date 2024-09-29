@@ -9,6 +9,7 @@ import DescriptionForCard from "./componentsOfCard/DescriptionForCard/Descriptio
 
 
 function Card({ van }) {
+  
   const thumbPhoto = van.gallery[0].thumb;
   const fullName = van.name;
   const name = cutText(fullName, 25);
@@ -25,7 +26,6 @@ function Card({ van }) {
   const radio = van.radio;
   const transmission = capitalizeFirstLetter(van.transmission);
   const engine = capitalizeFirstLetter(van.engine);
-  console.log(van);
   
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

@@ -12,6 +12,7 @@ import Reviews from "./componentOfCatalogId/Reviews/Reviews.jsx";
 
 function CatalogId() {
   const { id } = useParams();
+  
   const van = useSelector((state) => selectVanById(state, id));
   
   const [activeTab, setActiveTab] = useState("features");
@@ -34,7 +35,7 @@ function CatalogId() {
           location={van.location}
         />
         <div className={css.price}>
-          <PriceBlock price={van.price} />
+          <PriceBlock price={van.price} van={van}/>
         </div>
       </div>
       <div className={css.galery}>

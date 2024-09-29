@@ -12,6 +12,10 @@ function Catalog() {
   const [allVans, setAllVans] = useState([]);
   const dispatch = useDispatch();
   
+  const vans = useSelector((state) => state.vans.vans);
+  useEffect(() => {
+    console.log("Vans from Redux:", vans);
+  }, [vans]);
   
   const filters = useSelector((state) => state.vans.filters);
 

@@ -41,7 +41,7 @@ function Forma() {
           Stay connected! We are always ready to help you.
         </p>
       </div>
-      <ToastContainer /> {/* Додаємо контейнер для тостерів */}
+      <ToastContainer /> 
       <div className={css.inputs}>
         <Formik
           initialValues={{ name: "", email: "", comment: "", bookingDate: null }}
@@ -76,7 +76,7 @@ function Forma() {
                     selected={startDate}
                     onChange={(date) => {
                       setStartDate(date);
-                      setFieldValue("bookingDate", date); // Встановлюємо дату у Formik
+                      setFieldValue("bookingDate", date); 
                       setOpen(false);
                     }}
                     placeholderText="Booking date*"

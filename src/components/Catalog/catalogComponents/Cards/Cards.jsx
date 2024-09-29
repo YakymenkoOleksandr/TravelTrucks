@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Card from "../Cards/Card/Card.jsx";
 
 function Cards({ vans, loadMore, hasMore }) {
- 
+  
   return (
     <div className={css.wrapperForCards}>
       {vans.map((van) => (
