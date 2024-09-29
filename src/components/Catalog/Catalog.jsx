@@ -11,6 +11,7 @@ function Catalog() {
   const [filteredVans, setFilteredVans] = useState([]); 
   const [allVans, setAllVans] = useState([]);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   
   const vans = useSelector((state) => state.vans.vans);
   useEffect(() => {
@@ -22,6 +23,7 @@ function Catalog() {
   useEffect(() => {
     const fetchVans = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(
           "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers"
         );
@@ -32,6 +34,8 @@ function Catalog() {
         setFilteredVans(vansData);
       } catch (error) {
         console.error("Error fetching vans:", error);
+      } finally {
+        setLoading(false); 
       }
     };
 
@@ -72,8 +76,10 @@ function Catalog() {
   };
 
   return (
+    
     <div className={css.catalog}>
       <AllFilters handleSearchClick={handleSearchClick} />
+      {loading && <span className={css.loader}></span>} 
       <Cards
         loadMore={loadMore}
         hasMore={visibleCount < filteredVans.length} 

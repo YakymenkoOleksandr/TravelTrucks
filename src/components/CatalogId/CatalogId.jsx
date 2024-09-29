@@ -18,7 +18,7 @@ function CatalogId() {
   const [activeTab, setActiveTab] = useState("features");
 
   if (!van) {
-    return <div>Loading...</div>;
+    return <div><span className={css.loader}></span></div>;
   }
 
   const handleTabClick = (tab) => {
