@@ -25,7 +25,8 @@ function Card({ van }) {
   const radio = van.radio;
   const transmission = capitalizeFirstLetter(van.transmission);
   const engine = capitalizeFirstLetter(van.engine);
-
+  console.log(van);
+  
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }

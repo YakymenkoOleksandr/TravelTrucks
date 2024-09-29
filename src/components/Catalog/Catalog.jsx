@@ -11,7 +11,8 @@ function Catalog() {
   const [filteredVans, setFilteredVans] = useState([]); 
   const [allVans, setAllVans] = useState([]);
   const dispatch = useDispatch();
-
+  
+  
   const filters = useSelector((state) => state.vans.filters);
 
   useEffect(() => {
@@ -64,7 +65,6 @@ function Catalog() {
     resetFilters();
     setFilteredVans(filtered); 
     setVisibleCount(4); 
-    
   };
 
   return (
