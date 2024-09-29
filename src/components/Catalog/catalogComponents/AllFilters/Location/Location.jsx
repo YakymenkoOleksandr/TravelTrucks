@@ -2,7 +2,7 @@ import css from "./Location.module.css";
 import { BsMap } from "react-icons/bs";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { setLocation, applyFilters } from "../../../../../redux/vansSlice"; // Імпортуємо екшен setLocation
+import { setLocation } from "../../../../../redux/vansSlice"; // Імпортуємо екшен setLocation
 
 
 function Location() {
@@ -19,7 +19,6 @@ function Location() {
   if (event.key === 'Enter') {
     const location = event.target.value;
     dispatch(setLocation(location)); // Викликаємо екшен для збереження локації у Redux
-    dispatch(applyFilters()); // Застосовуємо нові фільтри
   }
 };
 

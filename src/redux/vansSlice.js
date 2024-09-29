@@ -13,7 +13,7 @@ const vansSlice = createSlice({
       kitchen: false,
       bathroom: false,
       transmission: "Manual", // Set default transmission to Manual
-      Location: "",
+      location: "",
       forms: [],
     },
     temporaryFilters: {
@@ -22,7 +22,7 @@ const vansSlice = createSlice({
       kitchen: false,
       bathroom: false,
       transmission: "Manual",
-      Location: "",
+      location: "",
       forms: [],
     },
   },
@@ -43,7 +43,7 @@ const vansSlice = createSlice({
           (filters.transmission
             ? van.transmission === filters.transmission
             : true) &&
-          (filters.Location ? van.Location.includes(filters.Location) : true) &&
+          (filters.location ? van.location.includes(filters.location) : true) &&
           (filters.forms.length > 0 ? filters.forms.includes(van.form) : true)
         );
       });
@@ -83,7 +83,7 @@ const vansSlice = createSlice({
       }
     },
     setLocation: (state, action) => {
-      state.temporaryFilters.Location = action.payload; // Встановлюємо у тимчасових фільтрах
+      state.temporaryFilters.location = action.payload; // Встановлюємо у тимчасових фільтрах
     },
     setForm: (state, action) => {
       state.temporaryFilters.forms = action.payload; // Встановлюємо у тимчасових фільтрах
@@ -101,7 +101,7 @@ const vansSlice = createSlice({
         isFullyIntegrated: false,
         isAlcove: false,
         transmission: "Manual",
-        Location: "",
+        location: "",
         form: [],
       };
       state.temporaryFilters = { ...state.filters };
