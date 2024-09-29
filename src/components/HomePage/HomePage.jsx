@@ -11,10 +11,9 @@ function HomePage() {
             You can find everything you want in our catalog
           </h2>
         </div>
-        <Link to="/catalog" >
-            <button className={css.buttonViewNow}>View Now</button>
-          </Link>
-        
+        <Link to="/catalog">
+          <button className={css.buttonViewNow}>View Now</button>
+        </Link>
       </div>
     </div>
   );

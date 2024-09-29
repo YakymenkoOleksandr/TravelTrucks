@@ -2,12 +2,11 @@ import css from "./Location.module.css";
 import { BsMap } from "react-icons/bs";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { setLocation } from "../../../../../redux/vansSlice"; 
-
+import { setLocation } from "../../../../../redux/vansSlice";
 
 function Location() {
   const inputRef = useRef(null);
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     if (inputRef.current) {
@@ -16,15 +15,15 @@ function Location() {
   };
 
   const handleInputKeyDown = (event) => {
-  if (event.key === 'Enter') {
-    const location = event.target.value;
-    dispatch(setLocation(location)); 
-  }
-};
+    if (event.key === "Enter") {
+      const location = event.target.value;
+      dispatch(setLocation(location));
+    }
+  };
 
   const handleInputChange = (event) => {
     const location = event.target.value;
-    dispatch(setLocation(location)); 
+    dispatch(setLocation(location));
   };
 
   return (
@@ -35,9 +34,8 @@ function Location() {
         <input
           className={css.inputOfBlockLocation}
           ref={inputRef}
-          onChange={handleInputChange} 
-          onKeyDown={handleInputKeyDown} 
-        
+          onChange={handleInputChange}
+          onKeyDown={handleInputKeyDown}
           placeholder="City"
         ></input>
       </div>

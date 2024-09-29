@@ -1,7 +1,7 @@
 import css from "./ButtonSearch.module.css";
 import PropTypes from "prop-types";
 
-function ButtonSearch({ onClick}) {
+function ButtonSearch({ onClick }) {
   return (
     <div className={css.wrapperForButtonSearch}>
       <button className={css.ButtonSearch} onClick={onClick}>

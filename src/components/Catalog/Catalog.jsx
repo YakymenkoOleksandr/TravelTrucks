@@ -1,5 +1,5 @@
 import css from "../Catalog/Catalog.module.css";
-import { useEffect, useState } from "react"; 
+import { useEffect, useState } from "react";
 import axios from "axios";
 import AllFilters from "./catalogComponents/AllFilters/AllFilters.jsx";
 import Cards from "./catalogComponents/Cards/Cards.jsx";
@@ -8,14 +8,11 @@ import { setVans, setActiveFilters, resetFilters } from "../../redux/vansSlice";
 
 function Catalog() {
   const [visibleCount, setVisibleCount] = useState(4);
-  const [filteredVans, setFilteredVans] = useState([]); 
+  const [filteredVans, setFilteredVans] = useState([]);
   const [allVans, setAllVans] = useState([]);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  
 
- 
-  
   const filters = useSelector((state) => state.vans.filters);
 
   useEffect(() => {
@@ -27,13 +24,13 @@ function Catalog() {
         );
 
         const vansData = response.data.items;
-        setAllVans(vansData); 
-        dispatch(setVans(vansData)); 
+        setAllVans(vansData);
+        dispatch(setVans(vansData));
         setFilteredVans(vansData);
       } catch (error) {
         console.error("Error fetching vans:", error);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
@@ -41,7 +38,7 @@ function Catalog() {
   }, [dispatch]);
 
   useEffect(() => {
-    setVisibleCount(4); 
+    setVisibleCount(4);
   }, [filters]);
 
   const loadMore = () => {
@@ -49,8 +46,8 @@ function Catalog() {
   };
 
   const handleSearchClick = () => {
-    dispatch(setActiveFilters()); 
-    const filtered = allVans.filter( 
+    dispatch(setActiveFilters());
+    const filtered = allVans.filter(
       ({ AC, TV, kitchen, bathroom, transmission, location, form }) => {
         return (
           (filters.AC ? filters.AC === AC : true) &&
@@ -68,19 +65,18 @@ function Catalog() {
       }
     );
     resetFilters();
-    setFilteredVans(filtered); 
-    setVisibleCount(4); 
+    setFilteredVans(filtered);
+    setVisibleCount(4);
   };
 
   return (
-    
     <div className={css.catalog}>
       <AllFilters handleSearchClick={handleSearchClick} />
-      {loading && <span className={css.loader}></span>} 
+      {loading && <span className={css.loader}></span>}
       <Cards
         loadMore={loadMore}
-        hasMore={visibleCount < filteredVans.length} 
-        vans={filteredVans.slice(0, visibleCount)} 
+        hasMore={visibleCount < filteredVans.length}
+        vans={filteredVans.slice(0, visibleCount)}
       />
     </div>
   );

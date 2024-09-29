@@ -46,7 +46,9 @@ function ComplectationBlock({
           <svg className={css.iconForVehicleEquipment}>
             <use href="/icons/symbol-defs.svg#icon-tv"></use>
           </svg>
-          <p className={css.textEquipment} id={css.TV}>TV</p>
+          <p className={css.textEquipment} id={css.TV}>
+            TV
+          </p>
         </div>
       )}
       {bathroom && (
@@ -70,13 +72,13 @@ function ComplectationBlock({
 }
 
 ComplectationBlock.propTypes = {
-  AC: PropTypes.bool.isRequired,           
-  TV: PropTypes.bool.isRequired,           
-  bathroom: PropTypes.bool.isRequired,     
-  kitchen: PropTypes.bool.isRequired,      
-  radio: PropTypes.bool.isRequired,        
-  transmission: PropTypes.string.isRequired, 
-  engine: PropTypes.string.isRequired,     
+  AC: PropTypes.bool.isRequired,
+  TV: PropTypes.bool.isRequired,
+  bathroom: PropTypes.bool.isRequired,
+  kitchen: PropTypes.bool.isRequired,
+  radio: PropTypes.bool.isRequired,
+  transmission: PropTypes.string.isRequired,
+  engine: PropTypes.string.isRequired,
 };
 
 export default ComplectationBlock;

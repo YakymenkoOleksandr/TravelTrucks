@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Review from "../Reviews/Review/Review.jsx";
 
 function Reviews({ reviews }) {
-    
   return (
     <div className={css.blockOfReviews}>
       <div className={css.avatarReitingStarsBlock}>
@@ -21,7 +20,7 @@ function Reviews({ reviews }) {
 }
 
 Reviews.propTypes = {
-    reviews: PropTypes.array.isRequired
-}
+  reviews: PropTypes.array.isRequired,
+};
 
 export default Reviews;

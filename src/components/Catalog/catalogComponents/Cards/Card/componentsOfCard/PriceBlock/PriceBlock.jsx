@@ -4,16 +4,15 @@ import { toggleFavorite } from "../../../../../../../redux/vansSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
 function PriceBlock({ price, van }) {
-  
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.vans.favorites);
-if (!van) {
-    return null; 
+  if (!van) {
+    return null;
   }
-  const isFavorited = favorites.includes(van.id); 
+  const isFavorited = favorites.includes(van.id);
 
   const handleToggleFavorite = () => {
-    dispatch(toggleFavorite(van.id)); 
+    dispatch(toggleFavorite(van.id));
   };
 
   return (

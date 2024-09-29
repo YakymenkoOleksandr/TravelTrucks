@@ -17,8 +17,10 @@ function VehicleType() {
       </div>
       <div className={css.wrapperForFilterIcons}>
         <div
-          className={`${css.buttonOfFilter} ${filters.forms.includes("panelTruck") ? css.active : ""}`} 
-          onClick={() => handleFilterClick("panelTruck")} 
+          className={`${css.buttonOfFilter} ${
+            filters.forms.includes("panelTruck") ? css.active : ""
+          }`}
+          onClick={() => handleFilterClick("panelTruck")}
         >
           <svg className={css.iconForVehicleType}>
             <use href="/icons/symbol-defs.svg#icon-bi_grid-1x2"></use>
@@ -26,17 +28,24 @@ function VehicleType() {
           <p className={css.textInFilterButton}>Van</p>
         </div>
         <div
-          className={`${css.buttonOfFilter} ${filters.forms.includes("fullyIntegrated") ? css.active : ""}`} 
-          onClick={() => handleFilterClick("fullyIntegrated")} 
+          className={`${css.buttonOfFilter} ${
+            filters.forms.includes("fullyIntegrated") ? css.active : ""
+          }`}
+          onClick={() => handleFilterClick("fullyIntegrated")}
         >
           <svg className={css.iconForVehicleType}>
             <use href="/icons/symbol-defs.svg#icon-bi_grid"></use>
           </svg>
-          <p className={css.textInFilterButton}>Fully<br /> Integrated</p>
+          <p className={css.textInFilterButton}>
+            Fully
+            <br /> Integrated
+          </p>
         </div>
         <div
-          className={`${css.buttonOfFilter} ${filters.forms.includes("alcove") ? css.active : ""}`} 
-          onClick={() => handleFilterClick("alcove")} 
+          className={`${css.buttonOfFilter} ${
+            filters.forms.includes("alcove") ? css.active : ""
+          }`}
+          onClick={() => handleFilterClick("alcove")}
         >
           <svg className={css.iconForVehicleType}>
             <use href="/icons/symbol-defs.svg#icon-bi_grid-3x3-gap"></use>

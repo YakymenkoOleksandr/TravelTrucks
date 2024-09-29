@@ -41,17 +41,25 @@ function Forma() {
           Stay connected! We are always ready to help you.
         </p>
       </div>
-      <ToastContainer /> 
+      <ToastContainer />
       <div className={css.inputs}>
         <Formik
-          initialValues={{ name: "", email: "", comment: "", bookingDate: null }}
+          initialValues={{
+            name: "",
+            email: "",
+            comment: "",
+            bookingDate: null,
+          }}
           onSubmit={handleSubmit}
           validationSchema={FeedbackSchema}
         >
           {({ setFieldValue }) => (
             <Form>
               <div className={css.wrapperForInputs}>
-                <div className={css.inputField} onClick={() => handleDivClick(0)}>
+                <div
+                  className={css.inputField}
+                  onClick={() => handleDivClick(0)}
+                >
                   <Field
                     className={css.input}
                     type="text"
@@ -61,7 +69,10 @@ function Forma() {
                   />
                 </div>
 
-                <div className={css.inputField} onClick={() => handleDivClick(1)}>
+                <div
+                  className={css.inputField}
+                  onClick={() => handleDivClick(1)}
+                >
                   <Field
                     className={css.input}
                     type="email"
@@ -71,12 +82,15 @@ function Forma() {
                   />
                 </div>
 
-                <div className={css.inputFieldCalendar} onClick={() => setOpen((prev) => !prev)}>
+                <div
+                  className={css.inputFieldCalendar}
+                  onClick={() => setOpen((prev) => !prev)}
+                >
                   <DatePicker
                     selected={startDate}
                     onChange={(date) => {
                       setStartDate(date);
-                      setFieldValue("bookingDate", date); 
+                      setFieldValue("bookingDate", date);
                       setOpen(false);
                     }}
                     placeholderText="Booking date*"
@@ -86,7 +100,10 @@ function Forma() {
                   />
                 </div>
 
-                <div className={css.inputComent} onClick={() => handleDivClick(2)}>
+                <div
+                  className={css.inputComent}
+                  onClick={() => handleDivClick(2)}
+                >
                   <Field
                     className={css.input}
                     type="text"
