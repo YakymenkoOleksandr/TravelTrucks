@@ -106,10 +106,13 @@ function Forma() {
                 >
                   <Field
                     className={css.input}
+                    as="textarea"
                     type="text"
                     name="comment"
                     placeholder="Comment"
                     innerRef={inputRefs[2]}
+                    rows={4} 
+                    style={{ resize: 'none' }}
                   />
                 </div>
 
