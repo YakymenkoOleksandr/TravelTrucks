@@ -13,10 +13,8 @@ function Catalog() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   
-  const vans = useSelector((state) => state.vans.vans);
-  useEffect(() => {
-    console.log("Vans from Redux:", vans);
-  }, [vans]);
+
+ 
   
   const filters = useSelector((state) => state.vans.filters);
 
@@ -44,7 +42,6 @@ function Catalog() {
 
   useEffect(() => {
     setVisibleCount(4); 
-    console.log(filters);
   }, [filters]);
 
   const loadMore = () => {

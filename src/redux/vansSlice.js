@@ -30,7 +30,6 @@ const vansSlice = createSlice({
   
   reducers: {
     setVans: (state, action) => {
-      console.log("Received vans:", action.payload);
       state.vans = action.payload;
       state.filteredVans = action.payload; 
     },
