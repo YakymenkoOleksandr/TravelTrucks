@@ -1,13 +1,17 @@
 import css from "./VehicleEquipment.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleFilter, setTransmission } from "../../../../../redux/vansSlice.js";
+import {
+  toggleFilter,
+  setTransmission,
+} from "../../../../../redux/vansSlice.js";
 
 function VehicleEquipment() {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.vans.filters);
 
   const handleTransmissionChange = () => {
-    const newTransmission = filters.transmission === "Manual" ? "Automatic" : "Manual";
+    const newTransmission =
+      filters.transmission === "Manual" ? "Automatic" : "Manual";
     dispatch(setTransmission({ value: newTransmission }));
   };
 
@@ -30,7 +34,9 @@ function VehicleEquipment() {
 
         {/* Kitchen Filter */}
         <div
-          className={`${css.buttonOfFilter} ${filters.kitchen ? css.active : ""}`}
+          className={`${css.buttonOfFilter} ${
+            filters.kitchen ? css.active : ""
+          }`}
           onClick={() => dispatch(toggleFilter("kitchen"))}
         >
           <svg className={css.iconForVehicleEquipment}>
@@ -52,7 +58,9 @@ function VehicleEquipment() {
 
         {/* Bathroom Filter */}
         <div
-          className={`${css.buttonOfFilter} ${filters.bathroom ? css.active : ""}`}
+          className={`${css.buttonOfFilter} ${
+            filters.bathroom ? css.active : ""
+          }`}
           onClick={() => dispatch(toggleFilter("bathroom"))}
         >
           <svg className={css.iconForVehicleEquipment}>
@@ -62,16 +70,16 @@ function VehicleEquipment() {
         </div>
 
         {/* Transmission Filter */}
-        <div className={css.transmissionFilters}>
-          <div
-            className={`${css.buttonOfFilter} ${filters.transmission === "Automatic" ? css.active : ""}`}
-            onClick={handleTransmissionChange} // Toggle transmission on click
-          >
-            <svg className={css.iconForVehicleEquipment}>
+        <div
+          className={`${css.buttonOfFilter} ${
+            filters.transmission === "Automatic" ? css.active : ""
+          }`}
+          onClick={handleTransmissionChange}
+        >
+          <svg className={css.iconForVehicleEquipment}>
             <use href="/icons/symbol-defs.svg#icon-diagram"></use>
           </svg>
-            <p className={css.textInFilterButton}>Automatic</p>
-          </div>
+          <p className={css.textInFilterButton}>Automatic</p>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import BlockReitingRevieusLocation from "./componentsOfCard/BlockReitingRevieusL
 import ComplectationBlock from "./componentsOfCard/СomplectationBlock/СomplectationBlock.jsx";
 import DescriptionForCard from "./componentsOfCard/DescriptionForCard/DescriptionForCard.jsx";
 
+
 function Card({ van }) {
   const thumbPhoto = van.gallery[0].thumb;
   const fullName = van.name;
@@ -28,6 +29,8 @@ function Card({ van }) {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  
 
   function cutText(text, maxLength) {
     if (text.length <= maxLength) {
@@ -51,7 +54,7 @@ function Card({ van }) {
               location={location}
             />
           </div>
-          <PriceBlock price={price} />
+          <PriceBlock price={price} van={van} />
         </div>
 
         <DescriptionForCard descriptionForCard={descriptionForCard} />

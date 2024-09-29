@@ -6,6 +6,7 @@ const vansSlice = createSlice({
     vans: [],
     filteredVans: [], // Додаємо поле для відфільтрованих даних
     selectedVans: [],
+    favorites: [],
     filters: {
       AC: false,
       TV: false,
@@ -13,7 +14,16 @@ const vansSlice = createSlice({
       bathroom: false,
       transmission: "Manual", // Set default transmission to Manual
       Location: "",
-      forms: []
+      forms: [],
+    },
+    temporaryFilters: {
+      AC: false,
+      TV: false,
+      kitchen: false,
+      bathroom: false,
+      transmission: "Manual",
+      Location: "",
+      forms: [],
     },
   },
 
@@ -22,19 +32,21 @@ const vansSlice = createSlice({
       state.vans = action.payload;
       state.filteredVans = action.payload; // Ініціалізуємо відфільтровані дані всіма вантажівками
     },
-    applyFilters: (state, action) => {
-  const filters = action.payload;
-  state.filteredVans = state.vans.filter((van) => {
-    return (
-      (filters.AC ? van.AC === filters.AC : true) &&
-      (filters.TV ? van.TV === filters.TV : true) &&
-      (filters.kitchen ? van.kitchen === filters.kitchen : true) &&
-      (filters.bathroom ? van.bathroom === filters.bathroom : true) &&
-      (filters.transmission ? van.transmission === filters.transmission : true) &&
-      (filters.Location ? van.Location.includes(filters.Location) : true) &&
-      (filters.forms.length > 0 ? filters.forms.includes(van.form) : true)
-    );
-  });
+    applyFilters: (state) => {
+      const filters = state.filters; // Використовуємо активні фільтри для застосування
+      state.filteredVans = state.vans.filter((van) => {
+        return (
+          (filters.AC ? van.AC === filters.AC : true) &&
+          (filters.TV ? van.TV === filters.TV : true) &&
+          (filters.kitchen ? van.kitchen === filters.kitchen : true) &&
+          (filters.bathroom ? van.bathroom === filters.bathroom : true) &&
+          (filters.transmission
+            ? van.transmission === filters.transmission
+            : true) &&
+          (filters.Location ? van.Location.includes(filters.Location) : true) &&
+          (filters.forms.length > 0 ? filters.forms.includes(van.form) : true)
+        );
+      });
     },
     toggleForm: (state, action) => {
       const formType = action.payload;
@@ -55,31 +67,29 @@ const vansSlice = createSlice({
     },
     toggleFilter: (state, action) => {
       const filterName = action.payload;
-      const currentValue = state.filters[filterName];
-
-      // Toggle the current filter
-      state.filters[filterName] = !currentValue;
-
-      // Get the number of active filters
-      const activeFiltersCount = Object.values(state.filters).filter(
-        Boolean
-      ).length;
-
-      // Ensure that no more than 8 filters are active at once
-      if (activeFiltersCount > 8) {
-        // If already 4 active, reset the last toggled filter
-        state.filters[filterName] = false;
-      }
+      state.filters[filterName] = !state.filters[filterName]; // Перемикаємо значення фільтра
     },
     setTransmission: (state, action) => {
       const { value } = action.payload;
-      state.filters.transmission = value; // Set the selected transmission value
+      state.temporaryFilters.transmission = value; // Оновлюємо тимчасові фільтри
+      state.filters.transmission = value; // Негайно оновлюємо активний фільтр
+    },
+    toggleFavorite: (state, action) => {
+      const vanId = action.payload;
+      if (state.favorites.includes(vanId)) {
+        state.favorites = state.favorites.filter((id) => id !== vanId); // Видаляємо з улюблених
+      } else {
+        state.favorites.push(vanId); // Додаємо до улюблених
+      }
     },
     setLocation: (state, action) => {
-      state.filters.Location = action.payload; // Задаємо нову локацію
+      state.temporaryFilters.Location = action.payload; // Встановлюємо у тимчасових фільтрах
     },
     setForm: (state, action) => {
-      state.filters.forms = action.payload; // Задаємо нове значення форми (тип кузова)
+      state.temporaryFilters.forms = action.payload; // Встановлюємо у тимчасових фільтрах
+    },
+    setActiveFilters: (state) => {
+      state.filters = { ...state.temporaryFilters }; // Копіюємо тимчасові фільтри в активні
     },
     resetFilters: (state) => {
       state.filters = {
@@ -92,22 +102,24 @@ const vansSlice = createSlice({
         isAlcove: false,
         transmission: "Manual",
         Location: "",
-        form: [], 
+        form: [],
       };
+      state.temporaryFilters = { ...state.filters };
     },
   },
 });
 
 export const {
   setVans,
-  toggleVanSelection,
-  setTransmission,
-  resetFilters,
-  toggleFilter,
+  setActiveFilters,
   applyFilters,
+  toggleFilter,
+  setTransmission,
   setLocation,
   setForm,
-  toggleForm
+  resetFilters,
+  toggleForm,
+  toggleFavorite
 } = vansSlice.actions;
 
 export default vansSlice.reducer;

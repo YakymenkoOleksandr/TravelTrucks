@@ -2,7 +2,8 @@ import css from "./Location.module.css";
 import { BsMap } from "react-icons/bs";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { setLocation } from "../../../../../redux/vansSlice"; // Імпортуємо екшен setLocation
+import { setLocation, applyFilters } from "../../../../../redux/vansSlice"; // Імпортуємо екшен setLocation
+
 
 function Location() {
   const inputRef = useRef(null);
@@ -13,6 +14,14 @@ function Location() {
       inputRef.current.focus();
     }
   };
+
+  const handleInputKeyDown = (event) => {
+  if (event.key === 'Enter') {
+    const location = event.target.value;
+    dispatch(setLocation(location)); // Викликаємо екшен для збереження локації у Redux
+    dispatch(applyFilters()); // Застосовуємо нові фільтри
+  }
+};
 
   const handleInputChange = (event) => {
     const location = event.target.value;
@@ -28,6 +37,9 @@ function Location() {
           className={css.inputOfBlockLocation}
           ref={inputRef}
           onChange={handleInputChange} // Додаємо обробник зміни введення
+          onKeyDown={handleInputKeyDown} // Додаємо обробник натискання клавіші
+        
+          placeholder="City"
         ></input>
       </div>
     </div>

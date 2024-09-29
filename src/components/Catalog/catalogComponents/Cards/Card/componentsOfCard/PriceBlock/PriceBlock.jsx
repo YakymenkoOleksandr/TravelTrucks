@@ -1,19 +1,40 @@
 import css from "./PriceBlock.module.css";
 import PropTypes from "prop-types";
+import { toggleFavorite } from "../../../../../../../redux/vansSlice.js";
+import { useDispatch, useSelector } from "react-redux";
 
-function PriceBlock({price}) {
+function PriceBlock({ price, van }) {
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.vans.favorites);
+
+  const isFavorited = favorites.includes(van.id); // Check if this van is favorited
+
+  const handleToggleFavorite = () => {
+    dispatch(toggleFavorite(van.id)); // Dispatch the toggle action
+  };
+
   return (
     <div className={css.priceBlock}>
       <h2 className={css.headerOfCardText}>€{price},00</h2>
-      <svg className={css.svgInCard}>
-        <use href="/icons/symbol-defs.svg#icon-Property-1Default"></use>
+      <svg
+        onClick={handleToggleFavorite}
+        className={`${css.svgInCard} ${isFavorited ? css.favorited : ""}`}
+      >
+        <use
+          href="/icons/symbol-defs.svg#icon-Property-1Default"
+          fill={isFavorited ? "red" : "black"}
+          stroke={isFavorited ? "red" : "black"}
+        ></use>
       </svg>
     </div>
   );
 }
 
 PriceBlock.propTypes = {
-  price: PropTypes.number.isRequired, 
+  price: PropTypes.number.isRequired,
+  van: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default PriceBlock;
